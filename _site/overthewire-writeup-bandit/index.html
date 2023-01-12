@@ -1,0 +1,620 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Bandit - Over The Wire - 4ndreTT</title>
+<meta name="description" content="Bandit es uno de los wargames disponibles en OverTheWire, el cual busca ayudar en la mejora de las habilidades de línea de comandos o terminal y la comprensión de la seguridad informática básica en Linux. El jugador debe resolver una serie de desafíos con la finalidad de obtener una ‘flag’ a través de la utilización de comandos y técnicas de seguridad. Los niveles van de dificultad creciente y se enfocan en diferentes áreas de seguridad, como privacidad, encriptación y autenticación. Bandit cuenta con 34 niveles.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_CO">
+<meta property="og:site_name" content="4ndreTT">
+<meta property="og:title" content="Bandit - Over The Wire">
+<meta property="og:url" content="https://snowscan.io/overthewire-writeup-bandit/">
+
+
+  <meta property="og:description" content="Bandit es uno de los wargames disponibles en OverTheWire, el cual busca ayudar en la mejora de las habilidades de línea de comandos o terminal y la comprensión de la seguridad informática básica en Linux. El jugador debe resolver una serie de desafíos con la finalidad de obtener una ‘flag’ a través de la utilización de comandos y técnicas de seguridad. Los niveles van de dificultad creciente y se enfocan en diferentes áreas de seguridad, como privacidad, encriptación y autenticación. Bandit cuenta con 34 niveles.">
+
+
+
+  <meta property="og:image" content="https://snowscan.io/assets/images/overthewire-writeup-bandit/logo_bandit.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2023-01-11T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://snowscan.io/overthewire-writeup-bandit/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "4ndreTT",
+      "url": "https://snowscan.io",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="4ndreTT Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo.png" alt=""></a>
+                
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/" >Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://snowscan.io/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">Bandit - Over The Wire</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/avatar.png" alt="4ndreTT" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">4ndreTT</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Estudiante de ingeniería de sistemas con gusto por la ciberseguridad, jugador de CTFs en HackTheBox, PicoCTF y TryHackMe
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Colombia</span>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:andreTT.btw@gmail.com">
+            <meta itemprop="email" content="andreTT.btw@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/4ndreTT" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/4ndreTT" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Bandit - Over The Wire">
+    <meta itemprop="description" content="Bandit es uno de los wargames disponibles en OverTheWire, el cual busca ayudar en la mejora de las habilidades de línea de comandos o terminal y la comprensión de la seguridad informática básica en Linux. El jugador debe resolver una serie de desafíos con la finalidad de obtener una ‘flag’ a través de la utilización de comandos y técnicas de seguridad. Los niveles van de dificultad creciente y se enfocan en diferentes áreas de seguridad, como privacidad, encriptación y autenticación. Bandit cuenta con 34 niveles.">
+    <meta itemprop="datePublished" content="January 11, 2023">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Bandit - Over The Wire
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="page__meta">
+          
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2023-01-11T00:00:00-05:00">January 11, 2023 </time>&emsp;
+          
+          
+        </p>
+        <p><img src="/assets/images/overthewire-writeup-bandit/logo_bandit.png" alt="" /></p>
+
+<p>Bandit es uno de los wargames disponibles en OverTheWire, el cual busca ayudar en la mejora de las habilidades de línea de comandos o terminal y la comprensión de la seguridad informática básica en Linux. El jugador debe resolver una serie de desafíos con la finalidad de obtener una “flag” a través de la utilización de comandos y técnicas de seguridad. Los niveles van de dificultad creciente y se enfocan en diferentes áreas de seguridad, como privacidad, encriptación y autenticación. Bandit cuenta con 34 niveles.</p>
+
+<p>Puedes intentar resolver el wargame en el siguiente enlace: <a href="https://overthewire.org/wargames/bandit/" target="_blank">Bandit</a></p>
+
+<p>Para iniciar tendremos que conectarnos mediante <a href="https://www.hostinger.co/tutoriales/que-es-ssh" target="_blank">SSH</a> al servidor del juego “Bandit” en bandit.labs.overthewire.org a través del puerto 2220.</p>
+
+<p>Es indiferente en qué sistema operativo host nos encontremos, ya sea Windows, Linux, Mac o una MV, ya que lo único que necesitaremos para conectarnos al servidor de bandit es un cliente de SSH y por defecto los sistemas mencionados anteriormente ya cuentan con uno previamente instalado.</p>
+
+<p>corregir texto -&gt; Asi obtendremos la contraseña del siguiente nivel :) ,,,, para salir de ssh escribimos exit</p>
+
+<p>Simplemente nos conectamos con el siguiente comando</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh user@bandit.labs.overthewire.org -p 2220
+</code></pre></div></div>
+
+<p>Tendremos que sustituir el ‘user’ con cada usuario que bandit nos proporcione. La bandera -p de ssh, indica el puerto por el cual pretendemos conectarnos.
+Las credenciales variarán a medida que avancemos de nivel.</p>
+
+<p>Para poder salir de ssh escribiremos en la terminal el comando <code class="language-plaintext highlighter-rouge">exit</code></p>
+
+<h2 id="menú-de-niveles-">Menú de niveles <span id="#menu"></span></h2>
+
+<p><a href="#bandit0">Bandit0</a> -&gt; <a href="#bandit1">Bandit1</a></p>
+
+<h2 id="bandit0-">Bandit0 <span id="bandit0"></span></h2>
+
+<p>Para este primer nivel, tenemos que conectarnos con las siguientes credenciales.
+<br />User: bandit0
+<br />Password: bandit0</p>
+
+<p>Una vez proporcionadas las credenciales, estaremos conectados al servidor de Bandit.</p>
+
+<h3 id="flag">Flag</h3>
+
+<p>La contraseña para acceder al nivel 1 se almacena en un archivo llamado “readme” ubicado en el directorio home del usuario bandit0.</p>
+
+<h3 id="solución">Solución</h3>
+
+<p>Utilizaremos el comando “ls” para listar el contenido del directorio actual. Si queremos obtener más información, podemos usar las opciones <br />
+<code class="language-plaintext highlighter-rouge">ls -l</code> Se mostrara un listado largo de los detalles de los archivos y directorios<br />
+<code class="language-plaintext highlighter-rouge">ls -a</code> Se mostraran los archivos y directorios ocultos<br /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit0@bandit:~$ ls -l
+total 4
+-rw-r----- 1 bandit1 bandit0 33 Jan 11 19:18 readme
+</code></pre></div></div>
+
+<p>Vemos que existe un archivo llamado “readme” y el usuario bandit0 tiene permiso de lectura<br />
+Con el comando <code class="language-plaintext highlighter-rouge">cat</code> podemos ver el contenido de un archivo.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit0@bandit:~$ cat readme 
+NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
+</code></pre></div></div>
+
+<p>Así obtendremos la constraseña del siguiente nivel :)</p>
+
+<p><a href="#menu">Menú de niveles</a></p>
+
+<h2 id="bandit1-">Bandit1 <span id="bandit1"></span></h2>
+
+<p>Para este nivel, nos conectaremos con el usuario bandit1 y la constraseña obtenida en el nivel anterior.
+<br />User: bandit1
+<br />Password: NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL</p>
+
+<h3 id="flag-1">Flag</h3>
+
+<p>La contraseña para el siguiente nivel se encuentra almacenada en un archivo llamado - ubicado en el directorio home del usuario bandit1.</p>
+
+<h3 id="solución-1">Solución</h3>
+
+<p>Listamos el contenido del directorio actual con el comando <code class="language-plaintext highlighter-rouge">ls</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit1@bandit:~$ ls
+-
+</code></pre></div></div>
+
+<p>Ya que comprobamos que el archivo <code class="language-plaintext highlighter-rouge">-</code> esta precente intentamos mostrar su contenido con el comando <code class="language-plaintext highlighter-rouge">cat</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit1@bandit:~$ cat -
+
+
+</code></pre></div></div>
+<p>Sin embargo, en esta ocasión vemos que el comando queda en una especie de carga y no se nos muestra el contenido. Esto se debe a que el nombre del archivo está escrito con un caracter especial. Para solucionar esto, digitamos el comando <code class="language-plaintext highlighter-rouge">cat ./-</code> mediante este estaremos diciendo que queremos mostrar el archivo llamado <code class="language-plaintext highlighter-rouge">-</code>, el cual se encuentra en el directorio actual <code class="language-plaintext highlighter-rouge">./</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit1@bandit:~$ cat ./-
+rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
+</code></pre></div></div>
+
+<p>Así obtendremos la constraseña del siguiente nivel :)</p>
+
+<p><a href="#menu">Menú de niveles</a></p>
+
+<h2 id="bandit2-">Bandit2 <span id="bandit2"></span></h2>
+
+<p>Para este nivel, nos conectaremos con el usuario bandit2 y la constraseña obtenida en el nivel anterior.
+<br />User: bandit2
+<br />Password: rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi</p>
+
+<h2 id="flag-2">Flag</h2>
+
+<p>La contraseña para el siguiente nivel se almacena en un archivo llamado “space in this filename” ubicado en el directorio de home del usuario bandit2.</p>
+
+<h2 id="solución-2">Solución</h2>
+
+<p>Listamos el contenido del directorio actual con el comando <code class="language-plaintext highlighter-rouge">ls</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit2@bandit:~$ ls
+spaces in this filename
+</code></pre></div></div>
+<p>Para comprobar que es un mismo archivo y no un archivo llamado “space” otro “in”, etc. 
+Utilizamos el comando <code class="language-plaintext highlighter-rouge">ls -l</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit2@bandit:~$ ls -l
+total 4
+-rw-r----- 1 bandit3 bandit2 33 Jan 11 19:18 spaces in this filename
+</code></pre></div></div>
+
+<p>Vemos que se trata de un mismo archivo. Sin embargo si ejecutamos el comando <code class="language-plaintext highlighter-rouge">cat space in this filename</code> este nos genera un error. Debido a que toma cada palabra como un archivo diferente.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit2@bandit:~$ cat space in this filename
+cat: space: No such file or directory
+cat: in: No such file or directory
+cat: this: No such file or directory
+cat: filename: No such file or directory
+</code></pre></div></div>
+<p>Existen varias soluciones para mostrar el contenido de un archivo cuyo nombre contine espacios.</p>
+
+<ul>
+  <li>Utilizar comillas alrededor del nombre del archivo <code class="language-plaintext highlighter-rouge">cat "space in this file"</code></li>
+  <li>Utilizar la barra invertida para escapar los espacios <code class="language-plaintext highlighter-rouge">cat space\ in\ this\ file</code></li>
+  <li>Utilizar la tabulación automatica para completa el nombre del archivo <code class="language-plaintext highlighter-rouge">Tecla TAB</code></li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit2@bandit:~$ cat spaces\ in\ this\ filename 
+aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
+</code></pre></div></div>
+
+<p>Así obtendremos la contraseña del siguiente nivel :)</p>
+
+<p><a href="#menu">Menú de niveles</a></p>
+
+<h2 id="bandit3-">Bandit3 <span id="bandit3"></span></h2>
+
+<p>Para este nivel, nos conectaremos con el usuario bandit3 y la constraseña obtenida en el nivel anterior.
+<br />User: bandit3
+<br />Password: aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG</p>
+
+<h2 id="flag-3">Flag</h2>
+
+<p>La contraseña para el siguiente nivel se encuentra almacenada en un archivo oculto en el directorio inhere.</p>
+
+<h2 id="solución-3">Solución</h2>
+
+<p>Ejecutando el comando <code class="language-plaintext highlighter-rouge">ls -l</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit3@bandit:~$ ls -l 
+total 4
+drwxr-xr-x 2 root root 4096 Jan 11 19:19 inhere
+</code></pre></div></div>
+<p>Vemos que hay un directorio llamado “inhere”, para poder ingresar a este utilizamos el comando <code class="language-plaintext highlighter-rouge">cd</code> y el nombre del directorio</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit3@bandit:~$ cd inhere/
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit3@bandit:~/inhere$
+</code></pre></div></div>
+
+<p>Para poder listar los archivos ocultos utilizamos el comando <code class="language-plaintext highlighter-rouge">ls -a</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit3@bandit:~/inhere$ ls -a
+.  ..  .hidden
+</code></pre></div></div>
+
+<p>Ahora solo nos queda mostrar el contenido del archivo con el comando <code class="language-plaintext highlighter-rouge">cat</code>, no debemos olvidar colocar el <code class="language-plaintext highlighter-rouge">.</code> que precedel el nombre del archivo, ya que este es el que nos indica que es un archivo oculto.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit3@bandit:~/inhere$ cat .hidden 
+2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
+</code></pre></div></div>
+
+<p>Así obtendremos la contraseña del siguiente nivel :)</p>
+
+<p><a href="#menu">Menú de niveles</a></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#bash" class="page__taxonomy-item" rel="tag">bash</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#linux" class="page__taxonomy-item" rel="tag">linux</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#terminal" class="page__taxonomy-item" rel="tag">terminal</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#infosec" class="page__taxonomy-item" rel="tag">infosec</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#overthewire" class="page__taxonomy-item" rel="tag">overthewire</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-01-11T00:00:00-05:00">January 11, 2023</time></p>
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 4ndreTT</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,217 @@
+---
+layout: single
+title: Bandit - Over The Wire 
+excerpt: "Bandit es uno de los wargames disponibles en OverTheWire, el cual busca ayudar en la mejora de las habilidades de línea de comandos o terminal y la comprensión de la seguridad informática básica en Linux. El jugador debe resolver una serie de desafíos con la finalidad de obtener una 'flag' a través de la utilización de comandos y técnicas de seguridad. Los niveles van de dificultad creciente y se enfocan en diferentes áreas de seguridad, como privacidad, encriptación y autenticación. Bandit cuenta con 34 niveles." 
+date: 2023-01-11
+classes: wide
+header:
+  teaser: /assets/images/overthewire-writeup-bandit/logo_bandit.png
+  teaser_home_page: true
+  icon: /assets/images/overthewire.png
+categories:
+  - overthewire 
+  - infosec
+tags:  
+  - linux 
+  - bash 
+  - terminal 
+---
+
+![](/assets/images/overthewire-writeup-bandit/logo_bandit.png)
+
+Bandit es uno de los wargames disponibles en OverTheWire, el cual busca ayudar en la mejora de las habilidades de línea de comandos o terminal y la comprensión de la seguridad informática básica en Linux. El jugador debe resolver una serie de desafíos con la finalidad de obtener una "flag" a través de la utilización de comandos y técnicas de seguridad. Los niveles van de dificultad creciente y se enfocan en diferentes áreas de seguridad, como privacidad, encriptación y autenticación. Bandit cuenta con 34 niveles.
+
+Puedes intentar resolver el wargame en el siguiente enlace: <a href="https://overthewire.org/wargames/bandit/" target="_blank">Bandit</a>
+
+Para iniciar tendremos que conectarnos mediante <a href="https://www.hostinger.co/tutoriales/que-es-ssh" target="_blank">SSH</a> al servidor del juego "Bandit" en bandit.labs.overthewire.org a través del puerto 2220. 
+
+Es indiferente en qué sistema operativo host nos encontremos, ya sea Windows, Linux, Mac o una MV, ya que lo único que necesitaremos para conectarnos al servidor de bandit es un cliente de SSH y por defecto los sistemas mencionados anteriormente ya cuentan con uno previamente instalado.
+
+corregir texto -> Asi obtendremos la contraseña del siguiente nivel :) ,,,, para salir de ssh escribimos exit 
+
+Simplemente nos conectamos con el siguiente comando 
+
+```
+ssh user@bandit.labs.overthewire.org -p 2220
+```
+
+Tendremos que sustituir el 'user' con cada usuario que bandit nos proporcione. La bandera -p de ssh, indica el puerto por el cual pretendemos conectarnos.
+Las credenciales variarán a medida que avancemos de nivel.
+
+Para poder salir de ssh escribiremos en la terminal el comando `exit`
+
+## Menú de niveles <span id="#menu">
+
+<a href="#bandit0">Bandit0</a> -> <a href="#bandit1">Bandit1</a>
+
+## Bandit0 <span id="bandit0">
+
+Para este primer nivel, tenemos que conectarnos con las siguientes credenciales.
+<br>User: bandit0
+<br>Password: bandit0
+
+Una vez proporcionadas las credenciales, estaremos conectados al servidor de Bandit.
+
+### Flag
+
+La contraseña para acceder al nivel 1 se almacena en un archivo llamado "readme" ubicado en el directorio home del usuario bandit0.
+
+### Solución
+
+Utilizaremos el comando "ls" para listar el contenido del directorio actual. Si queremos obtener más información, podemos usar las opciones <br>
+`ls -l` Se mostrara un listado largo de los detalles de los archivos y directorios<br>
+`ls -a` Se mostraran los archivos y directorios ocultos<br>
+
+```
+bandit0@bandit:~$ ls -l
+total 4
+-rw-r----- 1 bandit1 bandit0 33 Jan 11 19:18 readme
+```
+
+Vemos que existe un archivo llamado "readme" y el usuario bandit0 tiene permiso de lectura<br>
+Con el comando `cat` podemos ver el contenido de un archivo.
+
+```
+bandit0@bandit:~$ cat readme 
+NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
+```
+
+Así obtendremos la constraseña del siguiente nivel :) 
+
+<a href="#menu">Menú de niveles</a>
+
+## Bandit1 <span id="bandit1">
+
+Para este nivel, nos conectaremos con el usuario bandit1 y la constraseña obtenida en el nivel anterior.
+<br>User: bandit1
+<br>Password: NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL 
+
+### Flag
+
+La contraseña para el siguiente nivel se encuentra almacenada en un archivo llamado - ubicado en el directorio home del usuario bandit1.
+
+### Solución
+
+Listamos el contenido del directorio actual con el comando `ls`
+
+```
+bandit1@bandit:~$ ls
+-
+```
+
+Ya que comprobamos que el archivo `-` esta precente intentamos mostrar su contenido con el comando `cat`
+
+```
+bandit1@bandit:~$ cat -
+
+
+```
+Sin embargo, en esta ocasión vemos que el comando queda en una especie de carga y no se nos muestra el contenido. Esto se debe a que el nombre del archivo está escrito con un caracter especial. Para solucionar esto, digitamos el comando `cat ./-` mediante este estaremos diciendo que queremos mostrar el archivo llamado `-`, el cual se encuentra en el directorio actual `./`
+
+```
+bandit1@bandit:~$ cat ./-
+rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
+```
+
+Así obtendremos la constraseña del siguiente nivel :) 
+
+<a href="#menu">Menú de niveles</a>
+
+## Bandit2 <span id="bandit2">
+
+Para este nivel, nos conectaremos con el usuario bandit2 y la constraseña obtenida en el nivel anterior.
+<br>User: bandit2
+<br>Password: rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
+
+## Flag 
+
+La contraseña para el siguiente nivel se almacena en un archivo llamado "space in this filename" ubicado en el directorio de home del usuario bandit2.
+
+## Solución
+
+Listamos el contenido del directorio actual con el comando `ls`
+
+```
+bandit2@bandit:~$ ls
+spaces in this filename
+```
+Para comprobar que es un mismo archivo y no un archivo llamado "space" otro "in", etc. 
+Utilizamos el comando `ls -l` 
+
+```
+bandit2@bandit:~$ ls -l
+total 4
+-rw-r----- 1 bandit3 bandit2 33 Jan 11 19:18 spaces in this filename
+```
+
+Vemos que se trata de un mismo archivo. Sin embargo si ejecutamos el comando `cat space in this filename` este nos genera un error. Debido a que toma cada palabra como un archivo diferente. 
+
+```
+bandit2@bandit:~$ cat space in this filename
+cat: space: No such file or directory
+cat: in: No such file or directory
+cat: this: No such file or directory
+cat: filename: No such file or directory
+```
+Existen varias soluciones para mostrar el contenido de un archivo cuyo nombre contine espacios. 
+
+* Utilizar comillas alrededor del nombre del archivo `cat "space in this file"`
+* Utilizar la barra invertida para escapar los espacios `cat space\ in\ this\ file`
+* Utilizar la tabulación automatica para completa el nombre del archivo `Tecla TAB`
+
+```
+bandit2@bandit:~$ cat spaces\ in\ this\ filename 
+aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
+```
+
+Así obtendremos la contraseña del siguiente nivel :) 
+
+<a href="#menu">Menú de niveles</a>
+
+## Bandit3 <span id="bandit3">
+
+Para este nivel, nos conectaremos con el usuario bandit3 y la constraseña obtenida en el nivel anterior.
+<br>User: bandit3
+<br>Password: aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
+
+## Flag 
+
+La contraseña para el siguiente nivel se encuentra almacenada en un archivo oculto en el directorio inhere.
+
+##  Solución 
+
+Ejecutando el comando `ls -l`
+
+```
+bandit3@bandit:~$ ls -l 
+total 4
+drwxr-xr-x 2 root root 4096 Jan 11 19:19 inhere
+```
+Vemos que hay un directorio llamado "inhere", para poder ingresar a este utilizamos el comando `cd` y el nombre del directorio 
+
+```
+bandit3@bandit:~$ cd inhere/
+```
+```
+bandit3@bandit:~/inhere$
+```
+
+Para poder listar los archivos ocultos utilizamos el comando `ls -a`
+
+```
+bandit3@bandit:~/inhere$ ls -a
+.  ..  .hidden
+```
+
+Ahora solo nos queda mostrar el contenido del archivo con el comando `cat`, no debemos olvidar colocar el `.` que precedel el nombre del archivo, ya que este es el que nos indica que es un archivo oculto. 
+
+``` 
+bandit3@bandit:~/inhere$ cat .hidden 
+2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
+```
+
+Así obtendremos la contraseña del siguiente nivel :) 
+
+<a href="#menu">Menú de niveles</a>
+
+
