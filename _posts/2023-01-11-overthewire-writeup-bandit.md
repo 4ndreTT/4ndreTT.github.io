@@ -27,8 +27,6 @@ Para iniciar tendremos que conectarnos mediante <a href="https://www.hostinger.c
 
 Es indiferente en qué sistema operativo host nos encontremos, ya sea Windows, Linux, Mac o una MV, ya que lo único que necesitaremos para conectarnos al servidor de bandit es un cliente de SSH y por defecto los sistemas mencionados anteriormente ya cuentan con uno previamente instalado.
 
-corregir texto -> Asi obtendremos la contraseña del siguiente nivel :) ,,,, para salir de ssh escribimos exit 
-
 Simplemente nos conectamos con el siguiente comando 
 
 ```
@@ -42,7 +40,7 @@ Para poder salir de ssh escribiremos en la terminal el comando `exit`
 
 ## Menú de niveles <span id="#menu">
 
-<a href="#bandit0">Bandit0</a> -> <a href="#bandit1">Bandit1</a>
+<a href="#bandit0">Bandit0</a> -> <a href="#bandit1">Bandit1</a> -> <a href="#bandit2">Bandit2</a> -> <a href="#bandit3">Bandit3</a> -> <a href="#bandit4">Bandit4</a> -> <a href="#bandit5">Bandit5</a> 
 
 ## Bandit0 <span id="bandit0">
 
@@ -214,4 +212,115 @@ Así obtendremos la contraseña del siguiente nivel :)
 
 <a href="#menu">Menú de niveles</a>
 
+## Bandit4 <span id="bandit4">
 
+Para este nivel, nos conectaremos con el usuario bandit4 y la constraseña obtenida en el nivel anterior.
+<br>User: bandit4
+<br>Password: 2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
+
+## Flag 
+
+La contraseña para el siguiente nivel se almacena en el único archivo legible por humanos en el directorio inhere. Consejo: si su terminal está desordenada, intente con el comando "reset".
+
+## Solución 
+
+Con el comando `ls` observamos el directorio **inhere** se encuentra en la misma posición que el nivel anterior, por lo que procedemos a ingresar a él con el comando `cd` y listar su contenido
+
+```
+bandit4@bandit:~$ ls
+inhere
+bandit4@bandit:~$ cd inhere/
+bandit4@bandit:~/inhere$ 
+bandit4@bandit:~/inhere$ ls
+-file00  -file01  -file02  -file03  -file04  -file05  -file06  -file07  -file08  -file09
+```
+
+Como nos dice el enunciado, la contraseña está en el único archivo legible por humanos.
+
+Para poder encontrar dicho archivo utilizaremos el siguiente comando 
+`ls | file ./*`
+
+* `|` Este simbolo sirve para conectar el resultado de un comando a la entrada del otro
+* `file` Este comando se utiliza para determinar el tipo de un archivo específico
+* `./*` Este comando significa todos los elementos del directorio actual
+
+```
+bandit4@bandit:~/inhere$ ls | file ./*
+./-file00: data
+./-file01: data
+./-file02: data
+./-file03: data
+./-file04: data
+./-file05: data
+./-file06: data
+./-file07: ASCII text
+./-file08: data
+./-file09: data
+```
+
+El output del comando nos muestra que en este caso hay dos tipos de archivos 
+* Tipo `data` este tipo de archivo en Linux se refiere a un archivo que no se reconoce como perteneciente a ningún tipo de archivo específico, y por lo tanto no se puede abrir con un programa específico 
+* Tipo `ASCII text` es un tipo de archivo en Linux que contiene solo caracteres <a href="https://elcodigoascii.com.ar/" target="_blank">ASCII</a>.
+
+Por lo tanto el archivo `./-file07` es el que nos interesa, así que mostramos su contenido 
+
+```
+bandit4@bandit:~/inhere$ cat ./-file07
+lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
+```
+
+Así obtendremos la constraseña del siguiente nivel :) 
+
+<a href="#menu">Menú de niveles</a>
+
+## Bandit5 <span id="bandit5">
+
+Para este nivel, nos conectaremos con el usuario bandit5 y la constraseña obtenida en el nivel anterior.
+<br>User: bandit5
+<br>Password:  lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
+
+## Flag 
+
+La contraseña para el siguiente nivel se almacena en un archivo en algún lugar del directorio **inhere** y tiene todas las siguientes propiedades:
+
+human-readable -> Legible por humanos
+1033 bytes in size -> 1033 bytes de tamaño
+not executable -> No es ejecutable
+
+## Solución 
+
+Si hacemos la misma inspección que en los niveles anteriores veremos que hay un gran número de directorios y archivos, por lo tanto no sería óptimo revisar las propiedades uno por uno.
+
+```
+bandit5@bandit:~$ ls
+inhere
+bandit5@bandit:~$ cd inhere/
+bandit5@bandit:~/inhere$ ls
+maybehere00  maybehere03  maybehere06  maybehere09  maybehere12  maybehere15  maybehere18
+maybehere01  maybehere04  maybehere07  maybehere10  maybehere13  maybehere16  maybehere19
+maybehere02  maybehere05  maybehere08  maybehere11  maybehere14  maybehere17
+```
+
+Para solucionar este problema haremos uso del siguiente comando. 
+
+`find ./inhere/ -type f -size 1033c ! -executable`
+
+* `find` es un comando en Linux que se utiliza para buscar archivos y directorios en un sistema de archivos. Acepta varios parámetros para especificar dónde buscar, qué buscar y qué hacer con los archivos encontrados.  
+* `./inhere/` hace referencial la ruta de donde buscar.
+* `-type f` este parametro especifica que los archivos a buscar deben ser archivos rfegulares, no directorios ni enlaces simbólicos. 
+* `-size 1033c` este parametro es utilizado para dar un tamaño de archivo especifico el `c` hace referencia a que el tamñano sea en bytes
+* `! -executable` este parametro se utiliza para buscar archivos que no tengan permiso de ejecución.
+
+```
+bandit5@bandit:~$ find ./inhere/ -type f -size 1033c ! -executable
+./inhere/maybehere07/.file2
+```
+Simplemente nos queda mostrar el contenido del archivo encontrado, tomando en cuenta su ruta absoluta
+
+```
+bandit5@bandit:~$ cat ./inhere/maybehere07/.file2
+P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+```
+Así obtendremos la contraseña del siguiente nivel :)
+
+<a href="#menu">Menú de niveles</a>

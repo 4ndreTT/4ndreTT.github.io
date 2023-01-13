@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://snowscan.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://snowscan.io/" rel="alternate" type="text/html" /><updated>2023-01-12T17:13:14-05:00</updated><id>https://snowscan.io/feed.xml</id><title type="html">4ndreTT</title><subtitle>Blog de ciberseguridad</subtitle><author><name>4ndreTT</name><email>andreTT.btw@gmail.com</email></author><entry><title type="html">Bandit - Over The Wire</title><link href="https://snowscan.io/overthewire-writeup-bandit/" rel="alternate" type="text/html" title="Bandit - Over The Wire" /><published>2023-01-11T00:00:00-05:00</published><updated>2023-01-11T00:00:00-05:00</updated><id>https://snowscan.io/overthewire-writeup-bandit</id><content type="html" xml:base="https://snowscan.io/overthewire-writeup-bandit/">&lt;p&gt;&lt;img src=&quot;/assets/images/overthewire-writeup-bandit/logo_bandit.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://4ndrett.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://4ndrett.github.io/" rel="alternate" type="text/html" /><updated>2023-01-12T19:39:30-05:00</updated><id>https://4ndrett.github.io/feed.xml</id><title type="html">4ndreTT</title><subtitle>Blog de ciberseguridad</subtitle><author><name>4ndreTT</name><email>andreTT.btw@gmail.com</email></author><entry><title type="html">Bandit - Over The Wire</title><link href="https://4ndrett.github.io/overthewire-writeup-bandit/" rel="alternate" type="text/html" title="Bandit - Over The Wire" /><published>2023-01-11T00:00:00-05:00</published><updated>2023-01-11T00:00:00-05:00</updated><id>https://4ndrett.github.io/overthewire-writeup-bandit</id><content type="html" xml:base="https://4ndrett.github.io/overthewire-writeup-bandit/">&lt;p&gt;&lt;img src=&quot;/assets/images/overthewire-writeup-bandit/logo_bandit.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Bandit es uno de los wargames disponibles en OverTheWire, el cual busca ayudar en la mejora de las habilidades de línea de comandos o terminal y la comprensión de la seguridad informática básica en Linux. El jugador debe resolver una serie de desafíos con la finalidad de obtener una “flag” a través de la utilización de comandos y técnicas de seguridad. Los niveles van de dificultad creciente y se enfocan en diferentes áreas de seguridad, como privacidad, encriptación y autenticación. Bandit cuenta con 34 niveles.&lt;/p&gt;
 
@@ -7,8 +7,6 @@
 &lt;p&gt;Para iniciar tendremos que conectarnos mediante &lt;a href=&quot;https://www.hostinger.co/tutoriales/que-es-ssh&quot; target=&quot;_blank&quot;&gt;SSH&lt;/a&gt; al servidor del juego “Bandit” en bandit.labs.overthewire.org a través del puerto 2220.&lt;/p&gt;
 
 &lt;p&gt;Es indiferente en qué sistema operativo host nos encontremos, ya sea Windows, Linux, Mac o una MV, ya que lo único que necesitaremos para conectarnos al servidor de bandit es un cliente de SSH y por defecto los sistemas mencionados anteriormente ya cuentan con uno previamente instalado.&lt;/p&gt;
-
-&lt;p&gt;corregir texto -&amp;gt; Asi obtendremos la contraseña del siguiente nivel :) ,,,, para salir de ssh escribimos exit&lt;/p&gt;
 
 &lt;p&gt;Simplemente nos conectamos con el siguiente comando&lt;/p&gt;
 
@@ -22,7 +20,7 @@ Las credenciales variarán a medida que avancemos de nivel.&lt;/p&gt;
 
 &lt;h2 id=&quot;menú-de-niveles-&quot;&gt;Menú de niveles &lt;span id=&quot;#menu&quot;&gt;&lt;/span&gt;&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;#bandit0&quot;&gt;Bandit0&lt;/a&gt; -&amp;gt; &lt;a href=&quot;#bandit1&quot;&gt;Bandit1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#bandit0&quot;&gt;Bandit0&lt;/a&gt; -&amp;gt; &lt;a href=&quot;#bandit1&quot;&gt;Bandit1&lt;/a&gt; -&amp;gt; &lt;a href=&quot;#bandit2&quot;&gt;Bandit2&lt;/a&gt; -&amp;gt; &lt;a href=&quot;#bandit3&quot;&gt;Bandit3&lt;/a&gt; -&amp;gt; &lt;a href=&quot;#bandit4&quot;&gt;Bandit4&lt;/a&gt; -&amp;gt; &lt;a href=&quot;#bandit5&quot;&gt;Bandit5&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;bandit0-&quot;&gt;Bandit0 &lt;span id=&quot;bandit0&quot;&gt;&lt;/span&gt;&lt;/h2&gt;
 
@@ -178,6 +176,119 @@ drwxr-xr-x 2 root root 4096 Jan 11 19:19 inhere
 2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;Así obtendremos la contraseña del siguiente nivel :)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#menu&quot;&gt;Menú de niveles&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;bandit4-&quot;&gt;Bandit4 &lt;span id=&quot;bandit4&quot;&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;Para este nivel, nos conectaremos con el usuario bandit4 y la constraseña obtenida en el nivel anterior.
+&lt;br /&gt;User: bandit4
+&lt;br /&gt;Password: 2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe&lt;/p&gt;
+
+&lt;h2 id=&quot;flag-4&quot;&gt;Flag&lt;/h2&gt;
+
+&lt;p&gt;La contraseña para el siguiente nivel se almacena en el único archivo legible por humanos en el directorio inhere. Consejo: si su terminal está desordenada, intente con el comando “reset”.&lt;/p&gt;
+
+&lt;h2 id=&quot;solución-4&quot;&gt;Solución&lt;/h2&gt;
+
+&lt;p&gt;Con el comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ls&lt;/code&gt; observamos el directorio &lt;strong&gt;inhere&lt;/strong&gt; se encuentra en la misma posición que el nivel anterior, por lo que procedemos a ingresar a él con el comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cd&lt;/code&gt; y listar su contenido&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit4@bandit:~$ ls
+inhere
+bandit4@bandit:~$ cd inhere/
+bandit4@bandit:~/inhere$ 
+bandit4@bandit:~/inhere$ ls
+-file00  -file01  -file02  -file03  -file04  -file05  -file06  -file07  -file08  -file09
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Como nos dice el enunciado, la contraseña está en el único archivo legible por humanos.&lt;/p&gt;
+
+&lt;p&gt;Para poder encontrar dicho archivo utilizaremos el siguiente comando 
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ls | file ./*&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;|&lt;/code&gt; Este simbolo sirve para conectar el resultado de un comando a la entrada del otro&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;file&lt;/code&gt; Este comando se utiliza para determinar el tipo de un archivo específico&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./*&lt;/code&gt; Este comando significa todos los elementos del directorio actual&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit4@bandit:~/inhere$ ls | file ./*
+./-file00: data
+./-file01: data
+./-file02: data
+./-file03: data
+./-file04: data
+./-file05: data
+./-file06: data
+./-file07: ASCII text
+./-file08: data
+./-file09: data
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;El output del comando nos muestra que en este caso hay dos tipos de archivos&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Tipo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data&lt;/code&gt; este tipo de archivo en Linux se refiere a un archivo que no se reconoce como perteneciente a ningún tipo de archivo específico, y por lo tanto no se puede abrir con un programa específico&lt;/li&gt;
+  &lt;li&gt;Tipo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ASCII text&lt;/code&gt; es un tipo de archivo en Linux que contiene solo caracteres &lt;a href=&quot;https://elcodigoascii.com.ar/&quot; target=&quot;_blank&quot;&gt;ASCII&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Por lo tanto el archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./-file07&lt;/code&gt; es el que nos interesa, así que mostramos su contenido&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit4@bandit:~/inhere$ cat ./-file07
+lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Así obtendremos la constraseña del siguiente nivel :)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#menu&quot;&gt;Menú de niveles&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;bandit5-&quot;&gt;Bandit5 &lt;span id=&quot;bandit5&quot;&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;Para este nivel, nos conectaremos con el usuario bandit5 y la constraseña obtenida en el nivel anterior.
+&lt;br /&gt;User: bandit5
+&lt;br /&gt;Password:  lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR&lt;/p&gt;
+
+&lt;h2 id=&quot;flag-5&quot;&gt;Flag&lt;/h2&gt;
+
+&lt;p&gt;La contraseña para el siguiente nivel se almacena en un archivo en algún lugar del directorio &lt;strong&gt;inhere&lt;/strong&gt; y tiene todas las siguientes propiedades:&lt;/p&gt;
+
+&lt;p&gt;human-readable -&amp;gt; Legible por humanos
+1033 bytes in size -&amp;gt; 1033 bytes de tamaño
+not executable -&amp;gt; No es ejecutable&lt;/p&gt;
+
+&lt;h2 id=&quot;solución-5&quot;&gt;Solución&lt;/h2&gt;
+
+&lt;p&gt;Si hacemos la misma inspección que en los niveles anteriores veremos que hay un gran número de directorios y archivos, por lo tanto no sería óptimo revisar las propiedades uno por uno.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit5@bandit:~$ ls
+inhere
+bandit5@bandit:~$ cd inhere/
+bandit5@bandit:~/inhere$ ls
+maybehere00  maybehere03  maybehere06  maybehere09  maybehere12  maybehere15  maybehere18
+maybehere01  maybehere04  maybehere07  maybehere10  maybehere13  maybehere16  maybehere19
+maybehere02  maybehere05  maybehere08  maybehere11  maybehere14  maybehere17
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Para solucionar este problema haremos uso del siguiente comando.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;find ./inhere/ -type f -size 1033c ! -executable&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;find&lt;/code&gt; es un comando en Linux que se utiliza para buscar archivos y directorios en un sistema de archivos. Acepta varios parámetros para especificar dónde buscar, qué buscar y qué hacer con los archivos encontrados.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./inhere/&lt;/code&gt; hace referencial la ruta de donde buscar.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-type f&lt;/code&gt; este parametro especifica que los archivos a buscar deben ser archivos rfegulares, no directorios ni enlaces simbólicos.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-size 1033c&lt;/code&gt; este parametro es utilizado para dar un tamaño de archivo especifico el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c&lt;/code&gt; hace referencia a que el tamñano sea en bytes&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;! -executable&lt;/code&gt; este parametro se utiliza para buscar archivos que no tengan permiso de ejecución.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit5@bandit:~$ find ./inhere/ -type f -size 1033c ! -executable
+./inhere/maybehere07/.file2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Simplemente nos queda mostrar el contenido del archivo encontrado, tomando en cuenta su ruta absoluta&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit5@bandit:~$ cat ./inhere/maybehere07/.file2
+P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;Así obtendremos la contraseña del siguiente nivel :)&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;#menu&quot;&gt;Menú de niveles&lt;/a&gt;&lt;/p&gt;</content><author><name>4ndreTT</name><email>andreTT.btw@gmail.com</email></author><category term="overthewire" /><category term="infosec" /><category term="linux" /><category term="bash" /><category term="terminal" /><summary type="html">Bandit es uno de los wargames disponibles en OverTheWire, el cual busca ayudar en la mejora de las habilidades de línea de comandos o terminal y la comprensión de la seguridad informática básica en Linux. El jugador debe resolver una serie de desafíos con la finalidad de obtener una &apos;flag&apos; a través de la utilización de comandos y técnicas de seguridad. Los niveles van de dificultad creciente y se enfocan en diferentes áreas de seguridad, como privacidad, encriptación y autenticación. Bandit cuenta con 34 niveles.</summary></entry></feed>

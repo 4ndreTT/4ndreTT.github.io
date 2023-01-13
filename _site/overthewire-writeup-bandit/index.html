@@ -18,14 +18,14 @@
 <meta property="og:locale" content="en_CO">
 <meta property="og:site_name" content="4ndreTT">
 <meta property="og:title" content="Bandit - Over The Wire">
-<meta property="og:url" content="https://snowscan.io/overthewire-writeup-bandit/">
+<meta property="og:url" content="https://4ndrett.github.io/overthewire-writeup-bandit/">
 
 
   <meta property="og:description" content="Bandit es uno de los wargames disponibles en OverTheWire, el cual busca ayudar en la mejora de las habilidades de línea de comandos o terminal y la comprensión de la seguridad informática básica en Linux. El jugador debe resolver una serie de desafíos con la finalidad de obtener una ‘flag’ a través de la utilización de comandos y técnicas de seguridad. Los niveles van de dificultad creciente y se enfocan en diferentes áreas de seguridad, como privacidad, encriptación y autenticación. Bandit cuenta con 34 niveles.">
 
 
 
-  <meta property="og:image" content="https://snowscan.io/assets/images/overthewire-writeup-bandit/logo_bandit.png">
+  <meta property="og:image" content="https://4ndrett.github.io/assets/images/overthewire-writeup-bandit/logo_bandit.png">
 
 
 
@@ -42,7 +42,7 @@
   
 
 
-<link rel="canonical" href="https://snowscan.io/overthewire-writeup-bandit/">
+<link rel="canonical" href="https://4ndrett.github.io/overthewire-writeup-bandit/">
 
 
 
@@ -55,7 +55,7 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "4ndreTT",
-      "url": "https://snowscan.io",
+      "url": "https://4ndrett.github.io",
       "sameAs": null
     }
   </script>
@@ -160,7 +160,7 @@
     
       
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="https://snowscan.io/" itemprop="item"><span itemprop="name">Home</span></a>
+          <a href="https://4ndrett.github.io/" itemprop="item"><span itemprop="name">Home</span></a>
           <meta itemprop="position" content="1" />
         </li>
         <span class="sep">/</span>
@@ -332,8 +332,6 @@
 
 <p>Es indiferente en qué sistema operativo host nos encontremos, ya sea Windows, Linux, Mac o una MV, ya que lo único que necesitaremos para conectarnos al servidor de bandit es un cliente de SSH y por defecto los sistemas mencionados anteriormente ya cuentan con uno previamente instalado.</p>
 
-<p>corregir texto -&gt; Asi obtendremos la contraseña del siguiente nivel :) ,,,, para salir de ssh escribimos exit</p>
-
 <p>Simplemente nos conectamos con el siguiente comando</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh user@bandit.labs.overthewire.org -p 2220
@@ -346,7 +344,7 @@ Las credenciales variarán a medida que avancemos de nivel.</p>
 
 <h2 id="menú-de-niveles-">Menú de niveles <span id="#menu"></span></h2>
 
-<p><a href="#bandit0">Bandit0</a> -&gt; <a href="#bandit1">Bandit1</a></p>
+<p><a href="#bandit0">Bandit0</a> -&gt; <a href="#bandit1">Bandit1</a> -&gt; <a href="#bandit2">Bandit2</a> -&gt; <a href="#bandit3">Bandit3</a> -&gt; <a href="#bandit4">Bandit4</a> -&gt; <a href="#bandit5">Bandit5</a></p>
 
 <h2 id="bandit0-">Bandit0 <span id="bandit0"></span></h2>
 
@@ -506,6 +504,118 @@ drwxr-xr-x 2 root root 4096 Jan 11 19:19 inhere
 
 <p><a href="#menu">Menú de niveles</a></p>
 
+<h2 id="bandit4-">Bandit4 <span id="bandit4"></span></h2>
+
+<p>Para este nivel, nos conectaremos con el usuario bandit4 y la constraseña obtenida en el nivel anterior.
+<br />User: bandit4
+<br />Password: 2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe</p>
+
+<h2 id="flag-4">Flag</h2>
+
+<p>La contraseña para el siguiente nivel se almacena en el único archivo legible por humanos en el directorio inhere. Consejo: si su terminal está desordenada, intente con el comando “reset”.</p>
+
+<h2 id="solución-4">Solución</h2>
+
+<p>Con el comando <code class="language-plaintext highlighter-rouge">ls</code> observamos el directorio <strong>inhere</strong> se encuentra en la misma posición que el nivel anterior, por lo que procedemos a ingresar a él con el comando <code class="language-plaintext highlighter-rouge">cd</code> y listar su contenido</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit4@bandit:~$ ls
+inhere
+bandit4@bandit:~$ cd inhere/
+bandit4@bandit:~/inhere$ 
+bandit4@bandit:~/inhere$ ls
+-file00  -file01  -file02  -file03  -file04  -file05  -file06  -file07  -file08  -file09
+</code></pre></div></div>
+
+<p>Como nos dice el enunciado, la contraseña está en el único archivo legible por humanos.</p>
+
+<p>Para poder encontrar dicho archivo utilizaremos el siguiente comando 
+<code class="language-plaintext highlighter-rouge">ls | file ./*</code></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">|</code> Este simbolo sirve para conectar el resultado de un comando a la entrada del otro</li>
+  <li><code class="language-plaintext highlighter-rouge">file</code> Este comando se utiliza para determinar el tipo de un archivo específico</li>
+  <li><code class="language-plaintext highlighter-rouge">./*</code> Este comando significa todos los elementos del directorio actual</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit4@bandit:~/inhere$ ls | file ./*
+./-file00: data
+./-file01: data
+./-file02: data
+./-file03: data
+./-file04: data
+./-file05: data
+./-file06: data
+./-file07: ASCII text
+./-file08: data
+./-file09: data
+</code></pre></div></div>
+
+<p>El output del comando nos muestra que en este caso hay dos tipos de archivos</p>
+<ul>
+  <li>Tipo <code class="language-plaintext highlighter-rouge">data</code> este tipo de archivo en Linux se refiere a un archivo que no se reconoce como perteneciente a ningún tipo de archivo específico, y por lo tanto no se puede abrir con un programa específico</li>
+  <li>Tipo <code class="language-plaintext highlighter-rouge">ASCII text</code> es un tipo de archivo en Linux que contiene solo caracteres <a href="https://elcodigoascii.com.ar/" target="_blank">ASCII</a>.</li>
+</ul>
+
+<p>Por lo tanto el archivo <code class="language-plaintext highlighter-rouge">./-file07</code> es el que nos interesa, así que mostramos su contenido</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit4@bandit:~/inhere$ cat ./-file07
+lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
+</code></pre></div></div>
+
+<p>Así obtendremos la constraseña del siguiente nivel :)</p>
+
+<p><a href="#menu">Menú de niveles</a></p>
+
+<h2 id="bandit5-">Bandit5 <span id="bandit5"></span></h2>
+
+<p>Para este nivel, nos conectaremos con el usuario bandit5 y la constraseña obtenida en el nivel anterior.
+<br />User: bandit5
+<br />Password:  lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR</p>
+
+<h2 id="flag-5">Flag</h2>
+
+<p>La contraseña para el siguiente nivel se almacena en un archivo en algún lugar del directorio <strong>inhere</strong> y tiene todas las siguientes propiedades:</p>
+
+<p>human-readable -&gt; Legible por humanos
+1033 bytes in size -&gt; 1033 bytes de tamaño
+not executable -&gt; No es ejecutable</p>
+
+<h2 id="solución-5">Solución</h2>
+
+<p>Si hacemos la misma inspección que en los niveles anteriores veremos que hay un gran número de directorios y archivos, por lo tanto no sería óptimo revisar las propiedades uno por uno.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit5@bandit:~$ ls
+inhere
+bandit5@bandit:~$ cd inhere/
+bandit5@bandit:~/inhere$ ls
+maybehere00  maybehere03  maybehere06  maybehere09  maybehere12  maybehere15  maybehere18
+maybehere01  maybehere04  maybehere07  maybehere10  maybehere13  maybehere16  maybehere19
+maybehere02  maybehere05  maybehere08  maybehere11  maybehere14  maybehere17
+</code></pre></div></div>
+
+<p>Para solucionar este problema haremos uso del siguiente comando.</p>
+
+<p><code class="language-plaintext highlighter-rouge">find ./inhere/ -type f -size 1033c ! -executable</code></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">find</code> es un comando en Linux que se utiliza para buscar archivos y directorios en un sistema de archivos. Acepta varios parámetros para especificar dónde buscar, qué buscar y qué hacer con los archivos encontrados.</li>
+  <li><code class="language-plaintext highlighter-rouge">./inhere/</code> hace referencial la ruta de donde buscar.</li>
+  <li><code class="language-plaintext highlighter-rouge">-type f</code> este parametro especifica que los archivos a buscar deben ser archivos rfegulares, no directorios ni enlaces simbólicos.</li>
+  <li><code class="language-plaintext highlighter-rouge">-size 1033c</code> este parametro es utilizado para dar un tamaño de archivo especifico el <code class="language-plaintext highlighter-rouge">c</code> hace referencia a que el tamñano sea en bytes</li>
+  <li><code class="language-plaintext highlighter-rouge">! -executable</code> este parametro se utiliza para buscar archivos que no tengan permiso de ejecución.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit5@bandit:~$ find ./inhere/ -type f -size 1033c ! -executable
+./inhere/maybehere07/.file2
+</code></pre></div></div>
+<p>Simplemente nos queda mostrar el contenido del archivo encontrado, tomando en cuenta su ruta absoluta</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit5@bandit:~$ cat ./inhere/maybehere07/.file2
+P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+</code></pre></div></div>
+<p>Así obtendremos la contraseña del siguiente nivel :)</p>
+
+<p><a href="#menu">Menú de niveles</a></p>
 
         
       </section>

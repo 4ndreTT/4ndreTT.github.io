@@ -1,1 +1,1 @@
-Sitemap: https://snowscan.io/sitemap.xml
+Sitemap: https://4ndrett.github.io/sitemap.xml
