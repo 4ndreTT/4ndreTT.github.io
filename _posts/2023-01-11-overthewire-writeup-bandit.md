@@ -324,3 +324,58 @@ P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
 Así obtendremos la contraseña del siguiente nivel :)
 
 <a href="#menu">Menú de niveles</a>
+
+## Bandit6 <span id="bandit6">
+
+Para este nivel, nos conectaremos con el usuario bandit6 y la constraseña obtenida en el nivel anterior.
+<br>User: bandit6
+<br>Password: P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+
+## Flag 
+
+La contraseña para el siguiente nivel se almacena en algún lugar del servidor y tiene todas las siguientes propiedades:
+
+
+  owned by user bandit7
+  owned by group bandit6
+  33 bytes in size
+
+
+## Solución 
+
+Al listar la carpeta de nuestru usuario, observamos que no se encuentra ningún archivo importante.
+
+```
+bandit6@bandit:~$ ls -la
+total 20
+drwxr-xr-x  2 root root 4096 Apr 23 18:04 .
+drwxr-xr-x 70 root root 4096 Apr 23 18:05 ..
+-rw-r--r--  1 root root  220 Jan  6  2022 .bash_logout
+-rw-r--r--  1 root root 3771 Jan  6  2022 .bashrc
+-rw-r--r--  1 root root  807 Jan  6  2022 .profile
+```
+
+Por lo tanto, procedemos a realizar la busqueda pero desde la carpeta raíz, teniendo en cuenta las características especificadas en el ejercicio.
+
+`find / -user bandit7 -group bandit6 -size 33c 2>/dev/null`
+
+* `find` es un comando en Linux que se utiliza para buscar archivos y directorios en un sistema de archivos. Acepta varios parámetros para especificar dónde buscar, qué buscar y qué hacer con los archivos encontrados.  
+* `/` hace referencial la ruta de donde buscar.
+* `-user` busca archivos propiedad de un usuario especifico.
+* `-group` busca archivos propiedad de un grupo especifico.
+* `-size 33c` este parametro es utilizado para dar un tamaño de archivo especifico el `c` hace referencia a que el tamñano sea en bytes
+* `2>/dev/null`  es una redirección que redirige la salida de error (stderr) hacia el dispositivo `/dev/null` y esta ruta es conciderada como un "agujero negro" debido a que todo lo que se pone ahí se descarta y desaparece
+
+```
+bandit6@bandit:~$ find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
+/var/lib/dpkg/info/bandit7.password
+```
+Simplemente nos queda mostrar el contenido del archivo encontrado, tomando en cuenta su ruta absoluta
+
+```
+bandit6@bandit:~$ cat /var/lib/dpkg/info/bandit7.password 
+z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
+```
+Así obtendremos la contraseña del siguiente nivel :)
+
+<a href="#menu">Menú de niveles</a>
